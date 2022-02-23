@@ -3,6 +3,9 @@ const btn = document.getElementById('criar-tarefa');
 const listaTarefas = document.getElementById('lista-tarefas');
 const btnApagaTudo = document.getElementById('apaga-tudo');
 const btnApagaFinalizados = document.getElementById('remover-finalizados');
+// const btnSubir = document.getElementById('lista-tarefas');
+// const btnDescer = document.getElementById('lista-tarefas');
+const btnRemoverSelecionado = document.getElementById('remover-selecionado');
 
 function includText() {
   const newText = document.createElement('li');
@@ -12,6 +15,13 @@ function includText() {
   takeIncluir.value = '';
 }
 btn.addEventListener('click', includText);
+
+function enter(event) {
+  if (event.key === 'Enter') {
+    includText();
+  }
+}
+takeIncluir.addEventListener('keyup', enter);
 
 function colorItem(event) {
   for (let index = 0; index < listaTarefas.children.length; index += 1) {
@@ -47,3 +57,13 @@ function apagarTudo() {
   listaTarefas.innerHTML = '';
 }
 btnApagaTudo.addEventListener('click', apagarTudo);
+
+function apagaSelecionado() {
+  // console.log("funcionei") 
+  for (let index = 0; index < listaTarefas.children.length; index += 1) {
+    if (listaTarefas.children[index].className.includes('corGray')) {
+      listaTarefas.children[index].remove();
+    }
+  }
+}
+btnRemoverSelecionado.addEventListener('click', apagaSelecionado);
