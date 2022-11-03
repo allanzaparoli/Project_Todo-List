@@ -5,6 +5,7 @@ const btnApagaTudo = document.getElementById('apaga-tudo');
 const btnApagaFinalizados = document.getElementById('remover-finalizados');
 // const btnSubir = document.getElementById('lista-tarefas');
 // const btnDescer = document.getElementById('lista-tarefas');
+const btnSalvarTarefa = document.getElementById('salvar-tarefas');
 const btnRemoverSelecionado = document.getElementById('remover-selecionado');
 
 function includText() {
@@ -67,3 +68,11 @@ function apagaSelecionado() {
   }
 }
 btnRemoverSelecionado.addEventListener('click', apagaSelecionado);
+
+function salvarTarefa() {
+  for (let index = 0; index < listaTarefas.children.length; index += 1) {
+    localStorage.setItem(listaTarefas, 'listaTarefas.children[index].value');
+  }
+  localStorage.getItem('listaTarefas');
+}
+btnSalvarTarefa.addEventListener('click', salvarTarefa);
